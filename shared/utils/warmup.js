@@ -22,7 +22,7 @@ export const warmup = (fn, argument, count = 5) => {
         const runWarmup = (fn, argument, count) => {
             // check if arguments is an array
             if (!Array.isArray(argument)) {
-                argument = [argument, count];
+                argument = [argument];
             }
 
             fn(...argument).then(() => {
