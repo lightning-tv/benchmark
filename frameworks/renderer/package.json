@@ -12,10 +12,10 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@lightningjs/renderer": "^2.13.0"
+    "@lightningjs/renderer": "^2.13.3"
   },
   "devDependencies": {
-    "vite": "^4.5.0",
-    "vite-plugin-static-copy": "^0.17.1"
+    "vite": "^6.3.5",
+    "vite-plugin-static-copy": "^3.0.0"
   }
 }
