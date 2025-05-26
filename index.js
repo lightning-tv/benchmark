@@ -27,7 +27,9 @@ import { runBenchmark, getBrowserVersion } from "./testrunner/runBenchmark.js";
 import { processResults } from "./testrunner/processResults.js";
 import { writeResults } from "./testrunner/writeResults.js";
 import { getJavaScriptBundleSize } from "./testrunner/totalBundlefileSize.js";
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 
 /**
  * Check for --results or -r argument
@@ -91,7 +93,8 @@ const lookupFrameworkVersion = (dir) => {
  */
 const dirs = fs.readdirSync('./dist', { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
+    .map(dirent => dirent.name)
+    .filter(name => process.env[name] === 'true');
 
 /**
  * Checks if there are any frameworks to benchmark.

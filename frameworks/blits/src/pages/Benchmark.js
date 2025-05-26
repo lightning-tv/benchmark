@@ -32,21 +32,43 @@ import { run } from '../../../../shared/utils/run.js'
 
 const results = {}
 
-export default Blits.Component('Benchmark', {
+const Tile = Blits.Component('Tile', {
   template: `
-    <Element>
-      <Element :for="item in $items" :w="$item.w" :h="$item.h" :color="$item.color" :x="$item.x" :y="$item.y" key="$item.id">
+      <Element :w="$w" :h="$h" :color="$color" :x="$x" :y="$y" key="$id">
         <Text
-          :content="$item.text"
-          :color="$item.textColor"
+          :content="$text"
+          :color="$textColor"
           alpha="0.8"
-          :size="$item.fontSize || 26"
+          :size="$fontSize || 26"
           font="Ubuntu"
           x="5"
           y="2"
           ref="text"
         />
       </Element>
+  `,
+  props: ['type', 'size', 'w', 'h', 'color', 'x', 'y', 'id', 'text', 'textColor', 'fontSize'],
+})
+
+export default Blits.Component('Benchmark', {
+  components: { Tile },
+  template: `
+    <Element>
+      <Tile
+        :for="item in $items"
+        key="$item.id"
+        :id="$item.id"
+        :w="$item.w"
+        :h="$item.h"
+        :color="$item.color"
+        :x="$item.x"
+        :y="$item.y"
+        :text="$item.text"
+        :textColor="$item.textColor"
+        :fontSize="$item.fontSize"
+        :type="$item.type"
+        :size="$item.size"
+      />
     </Element>
   `,
   state() {

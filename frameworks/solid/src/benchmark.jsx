@@ -47,6 +47,25 @@ function buildData(count) {
     return data;
 }
 
+const Tile = (props) => {
+  return (
+    <view x={props.x} y={props.y} width={props.width} height={props.height} color={props.color}>
+      <text
+        x={5}
+        y={2}
+        width={props.width} 
+        height={props.height}
+        alpha={0.8}
+        fontFamily={"Ubuntu"}
+        color={props.textColor}
+        fontSize={props.fontSize}
+      >
+        {props.label}
+      </text>
+    </view>
+  );
+};
+
 const Benchmark = () => {
     let container;
     const renderer = getRenderer();
@@ -229,20 +248,17 @@ const Benchmark = () => {
     return (<Show when={data().length}>
         <View ref={container}>
           <Index each={data()}>{(row) => (
-                    <view x={row().x} y={row().y} width={row().width} height={row().height} color={row().color}>
-                        <text 
-                            x={5}
-                            y={2}
-                            width={row().width}
-                            height={row().height}
-                            alpha={0.8}
-                            fontFamily={"Ubuntu"}
-                            color={row().textColor}
-                            fontSize={row().fontSize}>
-                            {row().label}
-                        </text>
-                    </view>
-                )}</Index>
+            <Tile
+              x={row().x}
+              y={row().y}
+              width={row().width}
+              height={row().height}
+              color={row().color}
+              textColor={row().textColor}
+              fontSize={row().fontSize}
+              label={row().label}
+            />
+          )}</Index>
         </View>
     </Show>
   );
