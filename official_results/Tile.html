@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lightning JS Framework benchmark</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            h2 {
+                margin: 0;
+            }
+            p {
+                margin: 0;
+            }
+            div {
+                padding: 10px;
+            }
+            span {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body><div>
+    <h2>Results for Lightning JS Framework benchmark</h2>
+    <p>The benchmark was run on <span>darwin 24.4.0 arm64</span> on a <span>Apple M1 Pro 10 and 16.00 GB memory</span></p>
+    <p>Tests where executed on browser version: <span id="browserVersion">Chromium 128.0.6613.18</span> using PlayWright</p>
+</div><div>
+    <h2>Results</h2>
+    <p>Tests are run by executing an operation and waiting for the WebGL rennder to be Idle</p>
+    <p>Results are the time in milliseconds to execute the operation</p>
+    <p>All operations are executed on 6x CPU slowdown</p>
+</div><table>
+    <thead>
+        <tr>
+            <th>
+                <b>Name</b>
+                <br>
+                Duration for...
+            </th>
+            <th>solid 2.13.3</th><th>blits 1.29.1</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+            <th>
+                <b>create rows</b>
+                <div>creating 1,000 nodes. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">79.06ms ±10.70 (1.00)</td><td style="background-color: rgb(221, 226, 130); color: rgb(0, 0, 0);">194.56ms ±29.20 (1.78)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>replace all rows</b>
+                <div>updating all 1,000 nodes. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">44.68ms ±4.80 (1.00)</td><td style="background-color: rgb(192, 218, 129); color: rgb(0, 0, 0);">102.66ms ±38.40 (1.59)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>partial update rows</b>
+                <div>updating every 10th node for 1,000 nodes. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">28.20ms ±3.20 (1.00)</td><td style="background-color: rgb(150, 206, 127); color: rgb(0, 0, 0);">46.58ms ±8.90 (1.32)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>select row</b>
+                <div>selecting a node at random. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">30.40ms ±14.00 (1.00)</td><td style="background-color: rgb(110, 194, 125); color: rgb(0, 0, 0);">43.46ms ±24.50 (1.07)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>swap rows</b>
+                <div>swapping 2 nodes. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">44.10ms ±15.30 (1.00)</td><td style="background-color: rgb(107, 193, 124); color: rgb(0, 0, 0);">66.08ms ±5.00 (1.05)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>remove row</b>
+                <div>removing a node. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">28.66ms ±7.30 (1.00)</td><td style="background-color: rgb(125, 199, 125); color: rgb(0, 0, 0);">38.40ms ±7.20 (1.17)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>create many rows</b>
+                <div>creating 10,000 nodes. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">520.44ms ±62.30 (1.00)</td><td style="background-color: rgb(239, 231, 131); color: rgb(0, 0, 0);">1632.28ms ±166.50 (1.90)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>append rows</b>
+                <div>appending 1,000 nodes to 1,000 nodes. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">545.70ms ±51.30 (1.00)</td><td style="background-color: rgb(228, 228, 131); color: rgb(0, 0, 0);">1628.02ms ±146.50 (1.82)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>clear rows</b>
+                <div>removing all nodes. (5 warmup runs)</div>
+            </th>
+            <td style="background-color: rgb(99, 191, 124); color: rgb(0, 0, 0);">15.36ms ±3.70 (1.00)</td><td style="background-color: rgb(110, 194, 125); color: rgb(0, 0, 0);">17.98ms ±5.20 (1.07)</td>
+        </tr>
+        <tr>
+            <th>
+                <b>Overall</b>
+                <div>Average mean of all tests</div>
+            </th>
+            <td>1.00</td><td>1.42</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>
+                <b>Name</b>
+                <br>
+                Memory for...
+            </th>
+            <th>solid 2.13.3</th><th>blits 1.29.1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>
+                <b>create 20k nodes</b>
+                <div>creating 20k nodes.</div>
+            </th>
+            <td>32.41MB (created in 432.20ms)</td><td>38.18MB (created in 330.30msms)</td>
+        </tr>
+    </tbody>
+    <thead>
+        <tr>
+            <th>
+                <b>Name</b>
+                <br>
+                File size for...
+            </th>
+            <th>solid 2.13.3</th><th>blits 1.29.1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>
+                <b>bundle size</b>
+                <div>JavaScript size of the framework</div>
+            </th>
+            <td>204.16 KB</td><td>284.20 KB</td>
+        </tr>
+    </tbody>
+</table></body>
+    </html>
