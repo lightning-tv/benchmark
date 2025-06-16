@@ -17,6 +17,7 @@
 
 import { colourNames, adjectives, nouns } from '../../../shared/data.js'
 import { waitUntilIdle } from '../../../shared/utils/waitUntilIdle.js'
+import sampleData from '../../sample.js';
 
 // tools
 const pick = (dict) => dict[Math.round(Math.random() * 1000) % dict.length]
@@ -123,6 +124,36 @@ const createMany = function (amount) {
       this.items = items
     })
   })
+}
+
+const createManyTiles = function (amount) {
+  return new Promise((resolve) => {
+    clear.call(this).then(() => {
+      const createPerf = performance.now()
+      waitUntilIdle(renderer, createPerf).then((time) => {
+        resolve({ time })
+      })
+
+      const imgpath = sampleData.imgpath;
+      const results = sampleData.results;
+
+      const items = results
+        .map((item, index) => {
+          const title = item.title || item.name; // Use title or name
+          const posterPath = item.poster_path;
+
+          // Create tile only if title and posterPath are available for the item
+          return {
+            id: index,
+            title: title,
+            width: 185,
+            height: 278,
+            src: imgpath + posterPath,
+          };
+        })
+      this.items = items;
+    });
+  });
 }
 
 const createManyWithoutText = function (amount = 20000) {
@@ -241,6 +272,7 @@ export {
   sequence,
   printResults,
   createMany,
+  createManyTiles,
   createManyWithoutText,
   updateMany,
   updateRandom,

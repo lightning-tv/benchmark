@@ -32,6 +32,7 @@ Config.rendererOptions = {
   fontEngines: [SdfTextRenderer],
 };
 const Benchmark = lazy(() => import("./src/benchmark"));
+const Benchlist = lazy(() => import("./src/benchlist"));
 const Memory = lazy(() => import("./src/memory"));
 
 const App = (props) => {
@@ -60,6 +61,7 @@ renderer.stage.fontManager.addFontFace(
 render(() => (
     <HashRouter root={(props) => <App {...props} />}>
       <Route path="" component={Benchmark} />
+      <Route path="list" component={Benchlist} />
       <Route path="memory" component={Memory} />
     </HashRouter>
 ));

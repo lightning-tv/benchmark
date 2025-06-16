@@ -19,6 +19,7 @@ import Blits from '@lightningjs/blits'
 
 import Benchmark from './pages/Benchmark.js'
 import Memory from './pages/Memory.js'
+import BenchList from './pages/BenchList.js'
 import symbols from '@lightningjs/blits/symbols'
 import { setRenderer } from './perf.js'
 
@@ -31,6 +32,7 @@ export default Blits.Application({
   routes: [
     { path: '/', component: Benchmark },
     { path: '/memory', component: Memory },
+    { path: '/list', component: BenchList },
   ],
   hooks: {
     async ready() {
