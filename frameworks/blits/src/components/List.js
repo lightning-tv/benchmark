@@ -30,6 +30,7 @@ export default Blits.Component('List', {
           item="$item"
           :ref="'list-item-'+$item.id"
           :key="$item.id"
+          title="$item.title"
           src="$item.src"
           width="$item.width"
           height="$item.height"

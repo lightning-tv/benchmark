@@ -4,18 +4,16 @@ export const Tile = Blits.Component('Tile', {
   template: `
       <Element :w="$w" :h="$h" :color="$color" :x="$x" :y="$y" key="$id">
         <Text
-          :content="$text"
-          :color="$textColor"
-          alpha="0.8"
-          :size="$fontSize || 26"
+          :content="$title"
+          size="16"
           font="Ubuntu"
           x="5"
-          y="2"
+          y="240"
           ref="text"
         />
       </Element>
   `,
-  props: ['type', 'size', 'w', 'h', 'color', 'x', 'y', 'id', 'text', 'textColor', 'fontSize'],
+  props: ['type', 'size', 'w', 'h', 'color', 'x', 'y', 'id', 'title'],
 });
 
 export default Tile;

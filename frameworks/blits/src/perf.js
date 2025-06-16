@@ -130,10 +130,9 @@ const createManyTiles = function (amount) {
   return new Promise((resolve) => {
     clear.call(this).then(() => {
       const createPerf = performance.now()
-      waitUntilIdle(renderer, createPerf).then((time) => {
-        resolve({ time })
-      })
-
+      // waitUntilIdle(renderer, createPerf).then((time) => {
+      //   resolve({ time })
+      // })
       const imgpath = sampleData.imgpath;
       const results = sampleData.results;
 
@@ -152,6 +151,8 @@ const createManyTiles = function (amount) {
           };
         })
       this.items = items;
+
+      resolve({time: performance.now() - createPerf });
     });
   });
 }

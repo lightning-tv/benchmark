@@ -75,18 +75,14 @@ function buildTiles() {
 const Tile = (props) => {
   return (
     <view src={props.item.src} width={props.item.width} height={props.item.height}>
-      {/* <text
+      <text
         x={5}
-        y={2}
-        width={props.width} 
-        height={props.height}
-        alpha={0.8}
+        y={240}
         fontFamily={"Ubuntu"}
-        color={props.textColor}
-        fontSize={props.fontSize}
+        fontSize={16}
       >
-        {props.label}
-      </text> */}
+        {props.item.title}
+      </text>
     </view>
   );
 };
@@ -100,11 +96,12 @@ const Benchmark = () => {
         return clear().then(() => {
             return new Promise((resolve) => {
                 const createPerf = performance.now();
-                waitUntilIdle(renderer, createPerf).then(time => {
-                    resolve({ time });
-                });
+                // waitUntilIdle(renderer, createPerf).then(time => {
+                //     resolve({ time });
+                // });
 
                 setData(buildTiles());
+                resolve({ time: performance.now() - createPerf });
             });
         });
     },
