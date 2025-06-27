@@ -34,11 +34,13 @@ export default Blits.Component('Benchmark', {
   template: `
     <Element>
       <List :items="$items" />
+      <Text size="24" color="#000000" x="10" y="300" :content="$result" />
     </Element>
   `,
   state() {
     return {
       items: [],
+      result: 'Start',
     }
   },
   hooks: {
@@ -54,8 +56,9 @@ export default Blits.Component('Benchmark', {
   methods: {
     async testCreateMany() {
       await warmup(createManyTiles.bind(this), 50, 5)
-      const { average: createAvg, spread: createSpread } = await run(createManyTiles.bind(this), 5, 5)
+      const { average: createAvg, spread: createSpread } = await run(createManyTiles.bind(this), 20, 50)
       results.create = `${createAvg.toFixed(2)}ms ±${createSpread.toFixed(2)}`
+      this.result = results.create;
     },
     async testUpdateMany() {
       await createManyTiles.call(this, 1000)

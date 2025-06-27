@@ -90,6 +90,7 @@ const Tile = (props) => {
 const Benchmark = () => {
     let container;
     const renderer = getRenderer();
+    const [screenResults, setScreenResults] = createSignal('Start');
 
     const [data, setData] = createSignal([]),
     createMany = (amount = 10) => {
@@ -170,8 +171,9 @@ const Benchmark = () => {
         const results = {};
 
         await warmup(createMany, 50, 5);
-        const { average: createAvg, spread: createSpread } = await run(createMany, 50, 5);
+        const { average: createAvg, spread: createSpread } = await run(createMany, 20, 50);
         results.create = `${createAvg.toFixed(2)}ms ±${createSpread.toFixed(2)}`;
+        setScreenResults(results.create);
 
         // await createMany(50);
         // await warmup(updateMany, 50, 5);
@@ -207,13 +209,15 @@ const Benchmark = () => {
     console.log('starting benchmark');
     setTimeout(runBenchmark, 1000);
 
-    return (<Show when={data().length}>
+    return (
+    <>
         <Row ref={container} gap={10}>
           <Index each={data()}>{(item) => (
             <Tile item={item()} />
           )}</Index>
         </Row>
-    </Show>
+        <text fontSize={24} fontFamily={"Ubuntu"} color={0x000000ff} x={10} y={300}>{screenResults()}</text>
+    </>
   );
 };
 
